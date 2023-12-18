@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daycare Database</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura.css" type="text/css">
+</head>
+
+<body>
+
+    <h1>Daycare Database</h1>
+    <p id="scrapeStatus"></p>
+    <button id="scrapeButton" type="button">Toggle Scraping</button>
+    <p id="numberOfDaycares"></p>
+    <p id="stats"></p>
+
+    <button id="refreshButton" type="button">Refresh Data</button>
+    <div id="pagesTop"></div>
+    <script src="/main.js" defer></script>
+</body>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Street Address
+            </th>
+            <th>
+                City
+            </th>
+            <th>
+                State
+            </th>
+            <th>
+                Zip Code
+            </th>
+            <th>
+                Phone
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+
+    </tbody>
+</table>
+
+<div id="pagesBottom"></div>
+
+</html>
