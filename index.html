@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daycare Database</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sakura.css/css/sakura.css" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 </head>
 
 <body>
@@ -16,7 +18,26 @@
     <p id="numberOfDaycares"></p>
     <p id="stats"></p>
 
+    <div id="map" style="height: 500px;"></div>
+
     <button id="refreshButton" type="button">Refresh Data</button>
+
+    <label for="limit">Page Limit</label>
+    <select name="limit" id="limitDropdown">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+    </select>
+
+    <label for="state">State</label>
+    <select name="state" id="stateDropdown">
+    </select>
+
+    <label for="city">City</label>
+    <select name="city" id="cityDropdown">
+    </select>
+
     <div id="pagesTop"></div>
     <script src="/main.js" defer></script>
 </body>

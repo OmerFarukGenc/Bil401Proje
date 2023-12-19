@@ -107,8 +107,18 @@ const main = async () => {
         const statQuery = `SELECT *  FROM variable;`;
 
         const stat = await db.all(statQuery);
+        const IDListQuery = `SELECT id FROM daycare;`;
+        const IDList = await db.all(IDListQuery);
+
+        const IDmap = Array(1000).fill(0);
+        //console.log(IDList);
+        
+        for(let i = 0;i < IDList.length;i++)
+            IDmap[Math.floor(IDList[i].id / 100000000 )] = 1;
+        
+    
         //console.log(stat);
-        res.send({ ...result, stat });
+        res.send({ ...result, stat,IDmap });
     })
 
 
@@ -129,9 +139,28 @@ const main = async () => {
         const result = await db.all(`SELECT * FROM daycare LIMIT ${limit} OFFSET ${(page - 1) * limit}`);
         //console.log(result);
 
+
+        const distinctStatesQuery = `
+        SELECT DISTINCT State FROM daycare;
+        `;
+
+        const states = await db.all(distinctStatesQuery);
+
+        const distinctCitiesQuery = `
+        SELECT DISTINCT State,City FROM daycare;
+        `;
+
+        const cities = (await db.all(distinctCitiesQuery)).sort();
+
+        const distinctsZipCodeQuery = `
+        SELECT DISTINCT Zip_Code FROM daycare;
+        `;
+
+        const zipCodes = await db.all(distinctsZipCodeQuery);
+
         const numberOfPages = Math.floor(((await db.get(`SELECT COUNT(*) as count FROM daycare;`)).count / limit)) + 1;
 
-        res.send({data:result,numberOfPages});
+        res.send({data:result,numberOfPages,states,cities,zipCodes});
         return;
     })
 
